@@ -1,6 +1,12 @@
 # coding: utf-8
 
-from bottle import route, run, template
+from bottle import route, run, template,  request
+
+
+@route('/show_query')
+def show_query():
+    keyword = request.query.keyword
+    return template('keyword={{keyword}}', keyword=keyword)
 
 
 @route('/search/<keyword:re:[a-z]+>')
