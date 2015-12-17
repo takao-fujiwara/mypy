@@ -1,6 +1,13 @@
 # coding: utf-8
+# test
+from bottle import route, run, template, request
 
-from bottle import route, run, template
+
+@route('/show_header')
+def show_header():
+    headers_list = ["<p> %s = %s <p>" % (k, v)
+                    for k, v in request.headers.items()]
+    return "".join(headers_list)
 
 
 @route('/search/<keyword:re:[a-z]+>')
