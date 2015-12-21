@@ -1,6 +1,13 @@
 # coding: utf-8
-# test
-from bottle import route, run, template, request
+
+from bottle import route, get,  run, template, request
+
+
+@get('/show_query')
+def show_query():
+    query_list = ["<p> %s = %s <p>" % (k, v)
+                  for k, v in request.query.items()]
+    return "".join(query_list)
 
 
 @route('/show_header')
