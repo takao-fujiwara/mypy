@@ -1,6 +1,13 @@
 # coding: utf-8
 
-from bottle import route, get,  run, template, request
+from bottle import route, get, post, run, template, request
+
+
+@post('/show_form')
+def show_form():
+    keyandvalue_list = ["<p> %s = %s <p>" % (k, v)
+                        for k, v in request.forms.items()]
+    return "".join(keyandvalue_list)
 
 
 @get('/show_query')
