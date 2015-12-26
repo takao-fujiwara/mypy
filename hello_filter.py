@@ -5,21 +5,21 @@ from bottle import route, get, post, run, template, request
 
 @post('/show_form')
 def show_form():
-    keyandvalue_list = ["<p> %s = %s <p>" % (k, v)
+    keyandvalue_list = ["<p> %s = %s </p>" % (k, v)
                         for k, v in request.forms.items()]
     return "".join(keyandvalue_list)
 
 
 @get('/show_query')
 def show_query():
-    query_list = ["<p> %s = %s <p>" % (k, v)
+    query_list = ["<p> %s = %s </p>" % (k, v)
                   for k, v in request.query.items()]
     return "".join(query_list)
 
 
 @route('/show_header')
 def show_header():
-    headers_list = ["<p> %s = %s <p>" % (k, v)
+    headers_list = ["<p> %s = %s </p>" % (k, v)
                     for k, v in request.headers.items()]
     return "".join(headers_list)
 
