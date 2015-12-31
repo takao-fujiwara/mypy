@@ -1,6 +1,6 @@
 # coding: utf-8
 
-from bottle import route, get, post, run, template, request
+from bottle import route, get, post, run, template, request, response
 
 
 @post('/show_form')
@@ -22,6 +22,14 @@ def show_header():
     headers_list = ["<p> %s = %s </p>" % (k, v)
                     for k, v in request.headers.items()]
     return "".join(headers_list)
+
+
+@route('/show_cookie')
+def show_cookie():
+    count = int(request.cookies.get('counter', '0'))
+    count += 1
+    response.set_cookie('counter', str(count))
+    return template('You visited this page {{count}} times', count=str(count))
 
 
 @route('/search/<keyword:re:[a-z]+>')
