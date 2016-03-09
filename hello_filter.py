@@ -3,6 +3,12 @@
 from bottle import route, get, post, run, template, request, response
 
 
+@post('/show_file')
+def show_file():
+    upload = request.files.get('upload')
+    return template('name={{name}}', name=upload.filename)
+
+
 @post('/show_form')
 def show_form():
     keyandvalue_list = ["<p> %s = %s </p>" % (k, v)
