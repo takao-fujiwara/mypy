@@ -53,6 +53,11 @@ def versions(no):
     return template('versions={{no}}', no=no)
 
 
+@route('/show/<id:int>')
+def show(id):
+    return template('show', id=id)
+
+
 @route('/article/<id:int>')
 def article(id):
     return template('article={{id}}', id=id)
