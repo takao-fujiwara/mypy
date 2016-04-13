@@ -55,7 +55,7 @@ def versions(no):
 
 @route('/show/<id:int>')
 def show(id):
-    return template('show', id=id)
+    return template('rebase', id=id)
 
 
 @route('/article/<id:int>')
