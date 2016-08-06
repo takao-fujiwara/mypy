@@ -17,7 +17,7 @@ class Post(Base):
     text = Column(UnicodeText)
 
     def __repr__(self):
-        return "<Post(title='%s',text='%s')>" % (self.title, self.text)
+                return "<Post(title='%s',text='%s')>" % (self.title, self.text)
 
 
 Base.metadata.create_all(engine)
@@ -42,3 +42,27 @@ for post in query.all():
 
 post = query.get(1)
 print post.title
+
+post = query.filter(Post.title == u"title_2").first()
+print post
+
+post = query.filter(Post.id == 3).filter(Post.title == u"title_3").first()
+print post
+
+count = query.count()
+print post
+
+post = query.get(1)
+post.text = u"update"
+session.commit()
+post = query.get(1)
+print post
+
+post = query.get(1)
+session.delete(post)
+session.commit()
+post = query.get(1)
+print post
+
+for post in query.all():
+    print post.title
