@@ -1,7 +1,7 @@
 from sqlalchemy import create_engine, MetaData, Table, Column, Integer, String
 
 
-engine = create_engine('sqlite:///db.sqlite3', echo=True)
+engine = create_engine('sqlite://', echo=True)
 print engine
 
 metadata = MetaData()
