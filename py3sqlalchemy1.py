@@ -1,5 +1,5 @@
 import sqlalchemy as sa
-conn = sa.create_engine('sqlite:///zoo.db')
+conn = sa.create_engine('sqlite://')
 # print conn
 
 conn.execute('''CREATE TABLE zoo

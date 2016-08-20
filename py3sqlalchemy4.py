@@ -19,17 +19,12 @@ class Zoo(Base):
             return
             "<Zoo({}, {}, {})>".format(self.critter, self.count, self.damages)
 
-Base.metadata.create_all(conn)
-
-first = Zoo('duck', 10, 0.0)
-second = Zoo('bear', 2, 1000.0)
-third = Zoo('weasel', 1, 2000.0)
-
+# Base.metadata.create_all(conn)
 
 from sqlalchemy.orm import sessionmaker
 Session = sessionmaker(bind=conn)
 session = Session()
 
-session.add(first)
-session.add_all([second, third])
+forth = Zoo('d4', 4, 4000.0)
+session.add(forth)
 session.commit()
