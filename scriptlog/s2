@@ -1,3 +1,0 @@
-[Command: python -u C:\mypy\db1.py]
-Engine(sqlite:///db.sqlite3)
-[Finished in 0.261s]
