@@ -34,3 +34,5 @@ print "<Post(title='%s', text='%s')>" % (post.title, post.text)
 post = query.filter(Post.title == u'title_2').first()
 # print post.title, post.text
 print "<Post(title='%s', text='%s')>" % (post.title, post.text)
+
+print vars(post)
