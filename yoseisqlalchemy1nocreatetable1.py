@@ -1,3 +1,5 @@
+# coding: UTF-8
+
 import sqlalchemy as sa
 conn = sa.create_engine('sqlite:///post.db', echo=True)
 print conn
@@ -35,4 +37,18 @@ post = query.filter(Post.title == u'title_2').first()
 # print post.title, post.text
 print "<Post(title='%s', text='%s')>" % (post.title, post.text)
 
-print vars(post)
+# postオブジェクトの中身は　？
+
+# 中身を辞書型で返す
+d = vars(post)
+print d
+
+# 型は辞書型であることを確認表示　
+print type(d)
+
+# 辞書の要素（キーと値）の全部を表示
+print d.items()
+
+# 辞書の要素（キーと値）の各々を表示
+for v in d.items():
+    print v
