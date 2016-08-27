@@ -43,12 +43,12 @@ print "<Post(title='%s', text='%s')>" % (post.title, post.text)
 d = vars(post)
 print d
 
-# 型は辞書型であることを確認表示　
+# 型は辞書型であることを確認
 print type(d)
 
-# 辞書の要素（キーと値）の全部を表示
+# 辞書の要素（キーと値）の全部を配列で返す
 print d.items()
 
-# 辞書の要素（キーと値）の各々を表示
+# 辞書の要素（キーと値）の各々をタプルで返す
 for v in d.items():
     print v
