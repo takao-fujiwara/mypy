@@ -25,14 +25,18 @@ Session = sessionmaker(bind=conn)
 session = Session()
 
 query = session.query(Post)
+# データの削除
+# post = query.get(1)
+# session.delete(post)
+# session.commit()
 
-for post in query.all():
-    print post.title, post.text
-
-
+# データの更新
 post = query.get(2)
-# print post.title, post.text
-print "<Post(title='%s', text='%s')>" % (post.title, post.text)
+post.text = u"second2"
+session.commit()
+
+post = query.get(3)
+print post.title, post.text
 
 post = query.filter(Post.id == 3).filter(
     Post.title == u'title_3').first()
@@ -55,18 +59,12 @@ print d.items()
 for v in d.items():
     print v
 
+# データの数
 count = query.count()
 print count
 
-# データの削除
-# post = query.get(1)
-# session.delete(post)
-# session.commit()
-
-# データの更新
-post = query.get(2)
-post.text = u"second2"
-session.commit()
-
+# id = 1 は既に削除されていることを確認
 # id = 2 は　text が更新されていることを確認
-print post.title, post.text
+# 削除、更新後のテーブルの表示
+for post in query.all():
+        print post.title, post.text
