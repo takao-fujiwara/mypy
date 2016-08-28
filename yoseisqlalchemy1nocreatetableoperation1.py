@@ -13,10 +13,8 @@ class Post(Base):
         title = sa.Column(sa.Unicode(255), nullable=False)
         text = sa.Column(sa.UnicodeText)
 
-        def __rep__(self):
-            return
-            "<Post(title='%s', text='%s')>" % (self.title, self.text)
-
+        def __repr__(self):
+            return "<Post(title='%s',text='%s')>" % (self.title, self.text)
 
 # Base.metadata.create_all(conn)
 
@@ -34,9 +32,10 @@ query = session.query(Post)
 post = query.get(2)
 post.text = u"second2"
 session.commit()
+print post
 
 post = query.get(3)
-print post.title, post.text
+print post
 
 post = query.filter(Post.id == 3).filter(
     Post.title == u'title_3').first()
@@ -67,4 +66,4 @@ print count
 # id = 2 は　text が更新されていることを確認
 # 削除、更新後のテーブルの表示
 for post in query.all():
-        print post.title, post.text
+        print post

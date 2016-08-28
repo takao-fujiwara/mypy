@@ -1,8 +1,14 @@
 # coding: UTF-8
 import sqlalchemy as sa
-conn = sa.create_engine('sqlite:///post.db', echo=True)
-from sqlalchemy.ext.declarative import declarative_base
-Base = declarative_base()
+
+
+conn = sa.create_engine('sqlite://', echo=True)
+print conn
+
+# from sqlalchemy.ext.declarative import declarative_base
+from sqlalchemy.ext import declarative
+
+Base = declarative.declarative_base()
 
 
 class Post(Base):
@@ -25,6 +31,7 @@ class Post(Base):
 # コメントアウトするか又はテーブル名を変える
 # yoseisqlalchemy1nocreatetableoperation1参照
 
+# 但し　ＤＢがメモリー上にあるときは気にしなくてよい
 Base.metadata.create_all(conn)
 
 from sqlalchemy.orm import sessionmaker
@@ -41,3 +48,17 @@ session.add_all([
     ])
 
 session.commit()
+
+query = session.query(Post)
+
+for post in query.all():
+    print post.title
+
+post = query.get(1)
+print post.title
+
+post = query.filter(Post.title == u"title_2").first()
+print post
+
+post = query.filter(Post.id == 3).filter(Post.title == u"title_3").first()
+print post
