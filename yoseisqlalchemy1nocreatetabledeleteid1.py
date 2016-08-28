@@ -27,13 +27,15 @@ session = Session()
 query = session.query(Post)
 
 for post in query.all():
-    print post.title
+    print post.title, post.text
 
-post = query.get(1)
+
+post = query.get(2)
 # print post.title, post.text
 print "<Post(title='%s', text='%s')>" % (post.title, post.text)
 
-post = query.filter(Post.title == u'title_2').first()
+post = query.filter(Post.id == 3).filter(
+    Post.title == u'title_3').first()
 # print post.title, post.text
 print "<Post(title='%s', text='%s')>" % (post.title, post.text)
 
@@ -52,3 +54,19 @@ print d.items()
 # 辞書の要素（キーと値）の各々をタプルで返す
 for v in d.items():
     print v
+
+count = query.count()
+print count
+
+# データの削除
+# post = query.get(1)
+# session.delete(post)
+# session.commit()
+
+# データの更新
+post = query.get(2)
+post.text = u"second2"
+session.commit()
+
+# id = 2 は　text が更新されていることを確認
+print post.title, post.text

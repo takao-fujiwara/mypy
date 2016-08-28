@@ -1,8 +1,11 @@
 import sqlalchemy as sa
 conn = sa.create_engine('sqlite:///post.db', echo=True)
-# print engine
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
+
+# このファイルを実行するときは事前に同名テーブルがないか確認
+# して,あれば削除しておくこと。同じテーブル名があると作成されず
+# エラーとなる
 
 
 class Post(Base):
@@ -16,6 +19,7 @@ class Post(Base):
             "<Post(title='%s', text='%s')>" % (self.title, self.text)
 
 
+# 同じテーブル名でデータを操作したいときは下行をコメントアウト
 Base.metadata.create_all(conn)
 
 from sqlalchemy.orm import sessionmaker
