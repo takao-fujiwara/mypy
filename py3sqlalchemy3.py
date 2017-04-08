@@ -15,7 +15,7 @@ class Zoo(Base):
             self.count = count
             self.damages = damages
 
-        def __repr__(self):
+        def __rep__(self):
             return
             "<Zoo({}, {}, {})>".format(self.critter, self.count, self.damages)
 
@@ -27,9 +27,9 @@ third = Zoo('weasel', 1, 2000.0)
 
 
 from sqlalchemy.orm import sessionmaker
-
 Session = sessionmaker(bind=conn)
 session = Session()
+
 session.add(first)
 session.add_all([second, third])
 session.commit()

@@ -1,8 +1,11 @@
-# coding: UTF-8
 import sqlalchemy as sa
 conn = sa.create_engine('sqlite:///post.db', echo=True)
 from sqlalchemy.ext.declarative import declarative_base
 Base = declarative_base()
+
+# このファイルを実行するときは事前に同名テーブルがないか確認
+# して,あれば削除しておくこと。同じテーブル名があると作成されず
+# エラーとなる
 
 
 class Post(Base):
@@ -11,20 +14,12 @@ class Post(Base):
         title = sa.Column(sa.Unicode(255), nullable=False)
         text = sa.Column(sa.UnicodeText)
 
-        def __repr__(self):
-            return "<Post(title='%s', text='%s')>" % (self.title, self.text)
+        def __rep__(self):
+            return
+            "<Post(title='%s', text='%s')>" % (self.title, self.text)
 
 
-# このファイルを実行すると同じＤＢファイルで
-# 同じテーブル名だと新しいデータが追加されるので
-# 事前に同名テーブルがないか確認して,あれば削除しておくこと。
-#
-# 但し　ＤＢがメモリー上にあるときは気にしなくてよい
-#
-# 同じテーブル名で既存データを操作したいときは下行を
-# コメントアウトするか又はテーブル名を変える
-# yoseisqlalchemy1nocreatetableoperation1参照
-
+# 同じテーブル名でデータを操作したいときは下行をコメントアウト
 Base.metadata.create_all(conn)
 
 from sqlalchemy.orm import sessionmaker

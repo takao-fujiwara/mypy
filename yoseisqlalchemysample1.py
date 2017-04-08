@@ -1,4 +1,3 @@
-# coding: UTF-8
 from sqlalchemy import create_engine
 
 
@@ -7,9 +6,7 @@ print engine
 
 
 from sqlalchemy.ext import declarative
-
 Base = declarative.declarative_base()
-
 from sqlalchemy import Column, Integer, Unicode, UnicodeText
 
 
@@ -53,7 +50,7 @@ post = query.filter(Post.id == 3).filter(Post.title == u"title_3").first()
 print post
 
 count = query.count()
-print count
+print post
 
 post = query.get(1)
 post.text = u"update"

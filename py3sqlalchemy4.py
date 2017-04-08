@@ -15,7 +15,7 @@ class Zoo(Base):
             self.count = count
             self.damages = damages
 
-        def __repr__(self):
+        def __rep__(self):
             return
             "<Zoo({}, {}, {})>".format(self.critter, self.count, self.damages)
 
