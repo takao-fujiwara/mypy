@@ -18,7 +18,7 @@ from wtforms import validators
 from wtforms import StringField, IntegerField, TextAreaField
 
 Base = declarative_base()
-engine = create_engine('sqlite://', echo=True)
+engine = create_engine('sqlite:///books.db', echo=True)
 
 plugin = sqlalchemy.Plugin(
     engine,
@@ -59,7 +59,7 @@ class BookForm(Form):
             message=u'100文字以下で入力して下さい')]
     )
 
-    name = TextAreaField(
+    memo = TextAreaField(
         u'メモ', [validators.required(
             message=u'入力して下さい')]
     )
@@ -106,6 +106,7 @@ def edit(db, id):
         return HTTPError(404, 'Book is not found.')
 
     form = BookForm(request.POST, book)
+
     return template('edit', book=book, form=form, request=request)
 
 
@@ -137,6 +138,7 @@ def destroy(db, id):
 
     db.delete(book)
     redirect('/books')
+
 
 if __name__ == '__main__':
     run(host='localhost', port=8080, debug=True, reloader=True)

@@ -4,7 +4,7 @@
 	<h1 class="page-header">登録</h1>
 
 	<div class="col-md-5">
-		<form action="/book/add" method="post">
+		<form action="/books/add" method="post">
 
 			<div class="form-group">
 				<label for="title">タイトル</label>
@@ -27,6 +27,6 @@
 			<input type="submit" class="btn btn-default" value="登録する"/>
 
 		</form>
-				
+
 	</div>
 </div>

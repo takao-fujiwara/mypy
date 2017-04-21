@@ -16,21 +16,25 @@
 			</div>
 		</div>
 	</nav>
+
 <div class="container-fluid">
-	<div class="col-sm-3 col-md-2 sidebar">
+	<div class="row">
+	 <div class="col-sm-3 col-md-2 sidebar">
 		<ul class="nav nav-slider">
-			% if request.path=="/books":
+			%if request.path == "/books":
 				<li class="active"><a href="/books">一覧</a></li>
 				<li><a href="/books/add">登録</a></li>
-			% if request.path=="/books/add":
+			%elif request.path == "/books/add":
 				<li><a href="/books">一覧</a></li>
 				<li class="active"><a href="/books/add">登録</a></li>
-			% else:
+			%else:
 			<li class="active"><a href="/books">一覧</a></li>
 			<li><a href="/books/add">登録</a></li>
-			% end	
+			%end
 		</ul>
-		{{!base}}
+		</div>
+
+		 {{!base}}
 
 	</div>
 </div>

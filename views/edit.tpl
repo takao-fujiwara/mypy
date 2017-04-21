@@ -2,40 +2,39 @@
 
 <div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
 
-	% if request.pass=="/books/add/":
-		<h1 class="page-header">登録</h1>
-	% else:
+	%if request.path == "/books/add/":
+	  <h1 class="page-header">登録</h1>
+	%else:
 		<h1 class="page-header">編集</h1>
-	% end
+	%end
 
 	<div class="col-md-5">
 
-		% if request.pass=="/books/add/":
+		%if request.path == "/books/add/":
 			<form action="/books/add" method="post">
-		% else:
+		%else:
 			<form action="/books/{{book.id}}/edit" method="post">
-		% end
+		%end
 
-			 <div class="form-group">
+	  <div class="form-group">
+				{{!form.title.label}}
+				{{!form.title(class_="form-control", placeholder=u"タイトルを入力", maxlength="100")}}
 
-				{{!if form.title.label}}
-				{{!form.title(class="form-control", placeholder=u"タイトルを入力"、maxlength="100")}}
-
-				% if form.title.errors:
+				%if form.title.errors:
 					<div class="errors">
 						% for error in form.title.errors:
 							<p class="text-danger">{{error}}</p>
 						% end
 					</div>
-				% end
+				%end
 
 				</div>
 
 
 				<div class="form-group">
 
- 				{{!if form.price.label}}
- 				{{!form.price(class="form-control", placeholder=u"価格を入力"、maxlength="100")}}
+ 				{{!form.price.label}}
+ 				{{!form.price(class_="form-control", placeholder=u"価格を入力", maxlength="100")}}
 
  				% if form.price.errors:
  					<div class="errors">
@@ -50,8 +49,8 @@
 
 				<div class="form-group">
 
- 				{{!if form.memo.label}}
- 				{{!form.memo(class="form-control", placeholder=u"メモを入力"、maxlength="100")}}
+ 				{{!form.memo.label}}
+ 				{{!form.memo(class_="form-control",	placeholder=u"メモを入力", maxlength="100")}}
 
  				% if form.memo.errors:
  					<div class="errors">

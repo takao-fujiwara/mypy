@@ -19,7 +19,7 @@
 				% for book in books:
 				<tr>
 					<td>{{book.id}}</td>
-					<td><a href="/books/{{book.id}}/edit"></a></td>
+					<td><a href="/books/{{book.id}}/edit">{{book.title}}</a></td>
 					<td>{{book.price}}円</td>
 					<td>{{book.memo}}</td>
 					<td>
