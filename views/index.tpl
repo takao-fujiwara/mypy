@@ -1,7 +1,8 @@
 % rebase('base.tpl')
+	<div class="container-fluid">
+    <div class="main">
 
-<div class="col-sm-9 col-sm-offset-3 col-md-10 col-md-offset-2 main">
-	<h1 class="page-header">書籍一覧</h1>
+	<h6 class="page-header"></h6>
 
 	<div class="table-responsive">
 		<table class="table table-striped">
@@ -24,7 +25,7 @@
 					<td>{{book.memo}}</td>
 					<td>
 						<form action="/books/{{book.id}}/delete" method="post">
-							<p><input value="削除する" type="submit"/></p>
+							<p><input value="削除" type="submit"/></p>
 						</form>
 					</td>
 				</tr>
@@ -32,5 +33,5 @@
 
 			</tbody>
 		</table>
+		</div>
 	</div>
-</div>
