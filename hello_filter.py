@@ -16,6 +16,16 @@ def show_form():
     return "".join(keyandvalue_list)
 
 
+@post('/show_kfname')
+def show_kfname():
+    upload = request.files.get('upload').filename
+    keyandvalue_list = ["%s = %s" % (k, v)
+                        for k, v in request.forms.items()]
+    kword = " ,  ".join(keyandvalue_list)
+    kfname = upload + " , " + kword
+    return template('filename={{kfname}}', kfname=kfname)
+
+
 @get('/show_query')
 def show_query():
     query_list = ["<p> %s = %s </p>" % (k, v)
