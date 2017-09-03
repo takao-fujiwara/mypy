@@ -1,6 +1,7 @@
 # coding: utf-8
 
-from bottle import route, get, post, run, template, request, response
+from bottle import route, get, post, template, request, response
+import webbrowser as web
 
 
 @post('/show_file')
@@ -14,6 +15,16 @@ def show_form():
     keyandvalue_list = ["<p> %s = %s </p>" % (k, v)
                         for k, v in request.forms.items()]
     return "".join(keyandvalue_list)
+
+
+@post('/show_kfname')
+def show_kfname():
+    upload = request.files.get('upload').filename
+    keyandvalue_list = ["%s = %s" % (k, v)
+                        for k, v in request.forms.items()]
+    kword = " ,  ".join(keyandvalue_list)
+    kfname = upload + " , " + kword
+    return template('filename={{kfname}}', kfname=kfname)
 
 
 @get('/show_query')
@@ -73,4 +84,4 @@ def hello():
     return template('Hello {{string}}', string='world')
 
 if __name__ == '__main__':
-    run(host='localhost', port=8080, debug=True, reloader=True)
+    web.open('http://localhost:8080/hello', new=0)
