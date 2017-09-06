@@ -1,6 +1,6 @@
 # coding: utf-8
 import bottle
-from bottle import route, get, run, template, request, static_file
+from bottle import route, get, run, template, request, static_file, redirect
 from datetime import datetime
 
 from bottle.ext import sqlalchemy
@@ -37,6 +37,17 @@ def __repr__(self):
         self.title, self.memo, self.fname, self.created_at)
 
 
+@get('/')
+def top(db):
+    redirect('/mynotes')
+
+
+@get('/mynotes')
+def index(db):
+    mynotes = db.query(Mynote).all()
+    return template('indexmynote', mynotes=mynotes, request=request)
+
+
 @get('/upload')
 def upload():
     return template('upindex')
@@ -53,7 +64,7 @@ def do_upload():
         else:
             save_path = get_save_path()
             upload.save(save_path, overwrite=True)
-            return 'title=%s memo=%s filename=%s' % (title, memo, upload.filename)
+            return 'title=%s memo=%s fname=%s' % (title, memo, upload.filename)
     else:
         return 'title=%s memo=%s' % (title, memo)
 
