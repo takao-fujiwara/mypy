@@ -15,7 +15,7 @@
 			%end
 		</ul>
 	</div>
-{{!basemynote}}
+{{!base}}
 
 
 

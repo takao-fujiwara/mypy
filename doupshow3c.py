@@ -54,7 +54,7 @@ def upload():
 
 
 @route('/upload', method='POST')
-def do_upload():
+def do_upload(db):
     title = request.forms.title
     memo = request.forms.memo
     upload = request.files.get('upload', '')
@@ -64,6 +64,13 @@ def do_upload():
         else:
             save_path = get_save_path()
             upload.save(save_path, overwrite=True)
+
+            mynote = Mynote(
+                title=title,
+                memo=memo,
+                fname=upload.filename
+            )
+            db.add(mynote)
             return 'title=%s memo=%s fname=%s' % (title, memo, upload.filename)
     else:
         return 'title=%s memo=%s' % (title, memo)
