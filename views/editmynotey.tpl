@@ -3,9 +3,9 @@
 
 
 	%if request.path == "/mynotes/upload/":
-	  <h3 class="page-header">登録</h3>
+	  <h1 class="page-header">登録</h1>
 	%else:
-		<h4 class="page-header">編集<input type="submit" class="btn btn-default" value="（更新する）"/></h4>
+		<h3 class="page-header">編集</h3>
 	%end
 
 	<div class="col-md-5">
@@ -60,12 +60,19 @@
 				</div>
 
 <div class="static-image">
-	<img src="/static/img/{{mynote.fname}}" alt="画像なし" width="250" height="150">
+% vf  = "static/img/"+mynote.fname+'"'+")}}>"
+% vs = "<img src={{url('static_file',filename="+'"'
+
+{{vs}}{{vf}}
 </div>
 
 
 
-
+				% if request.path=="/mynotes/upload":
+					<input type="submit" class="btn btn-default" value="作成する"/>
+				% else:
+					<input type="submit" class="btn btn-default" value="更新する"/>
+				% end
 
 				</form>
 	</div>
