@@ -9,7 +9,7 @@
 			%elif request.path == "/upload/":
 				<li><a href="/mynotes">一覧</a></li>
 			%else:
-			<li class="active"><a href="/mynotes"></a></li>
+			<li class="active"><a href="/mynotes"></a>一覧</li>
 			%end
 		</ul>
 	</div>

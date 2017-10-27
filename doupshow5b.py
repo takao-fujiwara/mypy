@@ -4,8 +4,7 @@ import os
 from datetime import datetime
 
 import bottle
-from bottle import route, get, post, run, template, request
-from bottle import static_file, redirect, url
+from bottle import route, get, post, run, template, request, static_file, redirect, url
 from bottle import HTTPError
 
 
@@ -86,9 +85,10 @@ def upload():
 
 @route('/upload', method='POST')
 def do_upload(db):
-    title = request.forms.title
-    memo = request.forms.memo
+    title = request.forms.get('title')
+    memo = request.forms.get('memo')
     uploadfile = request.files.get('upload', '')
+    #
     if uploadfile:
         if not uploadfile.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
             return 'File extension not allowed!'
@@ -132,8 +132,7 @@ def edit(db, id):
     if not mynote:
         return HTTPError(404, 'Mynote is not found.')
     form = MynoteForm(request.POST, mynote)
-
-    return template('em', mynote=mynote, form=form, request=request, url=url)
+    return template('editmynote', mynote=mynote, form=form, request=request, url=url)
 
 
 @post('/mynotes/<id:int>/edit')
@@ -151,7 +150,7 @@ def update(db, id):
         mynote.fname = form.fname.data
         redirect('/mynotes')
     else:
-        return template('em', form=form, request=request)
+        return template('editmynote', form=form, request=request)
 
 
 @post('/mynotes/<id:int>/delete')
@@ -170,4 +169,4 @@ def destroy(db, id):
 
 
 if __name__ == '__main__':
-    run(host='0.0.0.0', port=8080, debug=True, reloader=True)
+    run(host='localhost', port=8080, debug=True, reloader=True)

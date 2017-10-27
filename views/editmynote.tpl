@@ -1,20 +1,16 @@
 % rebase('basemynote.tpl')
 
-
+  <div class="col-md-5">
 
 	%if request.path == "/mynotes/upload/":
+	  <form action="/mynotes/upload" method="post">
 	  <h3 class="page-header">登録</h3>
+
 	%else:
+	  <form action="/mynotes/{{mynote.id}}/edit" method="post">
 		<h4 class="page-header">編集<input type="submit" class="btn btn-default" value="（更新する）"/></h4>
 	%end
 
-	<div class="col-md-5">
-
-		%if request.path == "/mynotes/upload/":
-			<form action="/mynotes/upload" method="post">
-		%else:
-			<form action="/mynotes/{{mynote.id}}/edit" method="post">
-		%end
 
 	  <div class="form-group">
 				{{!form.title.label}}
