@@ -86,8 +86,9 @@ def upload():
 
 @route('/upload', method='POST')
 def do_upload(db):
-    title = request.forms.title
-    memo = request.forms.memo
+    # python2.7 windows用
+    title = request.forms.getunicode('title')
+    memo = request.forms.getunicode('memo')
     uploadfile = request.files.get('upload', '')
     if uploadfile:
         if not uploadfile.filename.lower().endswith(('.png', '.jpg', '.jpeg')):
