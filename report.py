@@ -1,3 +1,4 @@
+# coding: utf-8
 def get_description():
     from random import choice
     # sleet みぞれが降る
